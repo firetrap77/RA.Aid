@@ -111,6 +111,8 @@ def load_gitignore_patterns(path: Path) -> pathspec.PathSpec:
 
 def should_ignore(path: str, spec: pathspec.PathSpec) -> bool:
     """Check if a path should be ignored based on gitignore patterns"""
+    if spec is None:
+        return False
     return spec.match_file(path)
 
 

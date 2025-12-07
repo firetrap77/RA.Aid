@@ -529,6 +529,10 @@ def parse_arguments(args=None):
         default=None,
         help="Maximum cost threshold in USD (positive float)",
     )
+
+    # Add max_cost to the store_limit_config function to handle None safely
+    # This is already done in the function, but we ensure it's safe
+    # The function already checks for None, so no change needed there.
     parser.add_argument(
         "--max-tokens",
         type=int,
@@ -1525,7 +1529,7 @@ def main():
                     logger.error(f"Failed to record CLI input: {str(e)}")
                     human_input_id = None # Ensure None on failure
 
-                if human_input_id:
+                if session_id and human_input_id and isinstance(session_id, (int, str)) and isinstance(human_input_id, (int, str)):
                     try:
                         trajectory_repo = get_trajectory_repository() # Get the repository instance
                         logger.debug(f"Creating user_query trajectory record for session {session_id} (CLI), human_input_id {human_input_id}.")
@@ -1542,7 +1546,7 @@ def main():
                     except Exception as e:
                         logger.exception(f"Error creating user_query trajectory for session {session_id} (CLI): {e}")
                 else:
-                    logger.warning(f"Skipping user_query trajectory creation for session {session_id} (CLI) due to missing human_input_id.")
+                    logger.warning(f"Skipping user_query trajectory creation for session {session_id} (CLI) due to missing or invalid IDs.")
 
                 config = {
                     "configurable": {"thread_id": str(uuid.uuid4())},
