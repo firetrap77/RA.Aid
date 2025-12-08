@@ -22,7 +22,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 dependencies = [
-    "langchain-anthropic==0.3.15",
+    "langchain-anthropic==1.2.0",
     "langchain-aws==0.2.30",
     "langchain-openai==0.3.15",
     "litellm>=1.60.6",
