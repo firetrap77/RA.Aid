@@ -33,7 +33,7 @@ dependencies = [
     "langgraph==0.3.25",
     "langgraph-checkpoint==2.0.25",
     "langchain-core>=0.3.72",
-    "langgraph-prebuilt==0.1.5",
+    "langgraph-prebuilt==1.0.5",
     "langgraph-sdk==0.1.60",
     "langchain==0.3.25",
     "boto3==1.42.4",
